@@ -4,5 +4,7 @@ function isLannisterSoldier(color, lion) {
 
 }
 
-console.log(isLannisterSoldier("red", "lion")); // true - Ланистер
-console.log(isLannisterSoldier("blue", null)); // false - другие солдаты
+console.log(isLannisterSoldier("red", "lion"));   // true - Ланистер
+console.log(isLannisterSoldier("blue", "lion"));  // true - Ланистер
+console.log(isLannisterSoldier("red", "null"));   // true - Ланистер
+console.log(isLannisterSoldier("blue", null));    // false - другие солдаты
