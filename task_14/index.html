@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    body {
+      margin: 10px auto;
+      width: 470px;
+    }
+
+    h3 {
+      margin: 0;
+      padding-bottom: .3em;
+      font-size: 1.1em;
+    }
+
+    p {
+      margin: 0;
+      padding: 0 0 .5em;
+    }
+
+    .pane {
+      background: #edf5e1;
+      padding: 10px 20px 10px;
+      border-top: solid 2px #c4df9b;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div>
+    <div class="pane">
+      <h3>Лошадь</h3>
+      <p>Домашняя лошадь — животное семейства непарнокопытных, одомашненный и единственный сохранившийся подвид дикой
+        лошади, вымершей в дикой природе, за исключением небольшой популяции лошади Пржевальского.</p>
+    </div>
+
+    <div class="pane">
+      <h3>Осёл</h3>
+      <p>Домашний осёл или ишак — одомашненный подвид дикого осла, сыгравший важную историческую роль в развитии
+        хозяйства и культуры человека. Все одомашненные ослы относятся к африканским ослам.</p>
+    </div>
+
+    <div class="pane">
+      <h3>Корова, а также пара слов о диком быке, о волах и о тёлках. </h3>
+      <p>Коро́ва — самка домашнего быка, одомашненного подвида дикого быка, парнокопытного жвачного животного семейства
+        полорогих. Самцы вида называются быками, молодняк — телятами, кастрированные самцы — волами. Молодых (до первой
+        стельности) самок называют тёлками.</p>
+    </div>
+  </div>
+
+  <script>
+
+    let arrBlocks = document.getElementsByClassName("pane"); // нашёл необходимые блоки
+
+    for (let pane of arrBlocks) {
+      let tagP = pane.lastElementChild;
+      tagP.insertAdjacentHTML("afterend", '<img id="btn" class="button" src="img/delete.gif">'); // добавил <img> после <p> в каждом блоке
+      pane.lastElementChild.onclick = function () {
+        pane.style.display = "none";
+      }
+    }
+
+  </script>
+
+</body>
+
+</html>
