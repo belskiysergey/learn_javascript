@@ -249,53 +249,49 @@ let arr = [
 let newArr = arr.sort((a, b) => a.email > b.email ? 1 : -1);
 console.log(newArr);
 
-// Функция выводит необходимые данные в консоль
-function printsKeysValues(arr) {
-  for (let i = 0; i < arr.length; i++) {
-    console.log(i + 1);
+// Находим и выводим необходимые значения
+for (let i = 0; i < newArr.length; i++) {
+  console.log(i + 1);
 
-    for (const key in arr[i]) {
+  for (const key in newArr[i]) {
 
-      if (key === "name") {
-        console.log(key + ": " + arr[i].name);
-      } else if (key === "username") {
-        console.log(key + ": " + arr[i].username);
-      } else if (key === "email") {
-        console.log(key + ": " + arr[i].email);
-      } else if (key === "phone") {
-        console.log(key + ": " + arr[i].phone);
-      } else if (key === "website") {
-        console.log(key + ": " + arr[i].website);
-      } else if (key === "address") {
+    if (key === "name") {
+      console.log(key + ": " + newArr[i].name);
+    } else if (key === "username") {
+      console.log(key + ": " + newArr[i].username);
+    } else if (key === "email") {
+      console.log(key + ": " + newArr[i].email);
+    } else if (key === "phone") {
+      console.log(key + ": " + newArr[i].phone);
+    } else if (key === "website") {
+      console.log(key + ": " + newArr[i].website);
+    } else if (key === "address") {
 
-        let address = {};
+      let address = {};
 
-        for (const prop in arr[i].address) {
-          if (prop === "street") {
-            address["street"] = arr[i].address.street;
-          } else if (prop === "suite") {
-            address["suite"] = arr[i].address.suite;
-          } else if (prop === "city") {
-            address["city"] = arr[i].address.city;
-          }
+      for (const prop in newArr[i].address) {
+        if (prop === "street") {
+          address["street"] = newArr[i].address.street;
+        } else if (prop === "suite") {
+          address["suite"] = newArr[i].address.suite;
+        } else if (prop === "city") {
+          address["city"] = newArr[i].address.city;
         }
-        console.log("address:");
-        console.log(address);
-
-      } else if (key === "company") {
-
-        let company = {};
-
-        for (const cell in arr[i].company) {
-          if (cell === "name") {
-            company["name"] = arr[i].company.name;
-          }
-        }
-        console.log("company:");
-        console.log(company);
       }
+      console.log("address:");
+      console.log(address);
+
+    } else if (key === "company") {
+
+      let company = {};
+
+      for (const cell in newArr[i].company) {
+        if (cell === "name") {
+          company["name"] = newArr[i].company.name;
+        }
+      }
+      console.log("company:");
+      console.log(company);
     }
   }
 }
-
-printsKeysValues(newArr);
