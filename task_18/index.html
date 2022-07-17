@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .modal {
+      width: 60vw;
+      height: 300px;
+      position: absolute;
+      border: 1px solid #ccc;
+      border-radius: 15px;
+      box-shadow: 0px 0px 5px 3px #ccc;
+      padding: 15px;
+      left: calc(50vw - 30vw);
+      top: calc(50vh - 150px);
+    }
+  </style>
+</head>
+<body>
+  <div class="modal">
+    <h1>SALE!!!</h1>
+    <h3>только до <span class="endSalesDay">31.07.2022</span>!!!</h3>
+    <br>
+    <h3>Осталось времени</h3>
+    <span id="counter">00:00:00:00</span>
+    <button class="sale-popup-bay">Купить</button>
+    <button class="sale-popup-close">Закрыть</button>
+  </div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
