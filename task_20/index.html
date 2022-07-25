@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .completed {
+      margin-left: 20px;
+      clear: both;
+      position: relative;
+    }
+
+    .completed:before {
+      content: "";
+      width: 10px;
+      height: 10px;
+      background: #80808036;
+      display: block;
+      float: left;
+      position: absolute;
+      left: -15px;
+      top: 6px;
+      border: 1px solid blue;
+      border-radius: 2px;
+    }
+
+    .completed-false:before {
+      background: red;
+    }
+
+    .completed-true:before {
+      background: greenyellow;
+    }
+  </style>
+</head>
+
+<body>
+
+  <div class="filters">
+    <label>
+      Поиск по задаче
+      <input class="searchInput" type="text" placeholder="Введите название задачи" />
+    </label>
+    <label>
+      Сортировака по названию
+      <select class="select">
+        <option value="asc">от А - Я</option>
+        <option value="desc">от Я - А</option>
+      </select>
+    </label>
+    <label>
+      Только выполненные
+      <input class="isComplited" type="checkbox" />
+    </label>
+  </div>
+  <div class="todo-list"></div>
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
