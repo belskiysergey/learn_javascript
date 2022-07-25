@@ -158,29 +158,45 @@ const isCompleted = document.querySelector('.isComplited');
 
 // проверяем параметры URL и добавляем их в переменные фильтров, если параметров нет, то действует значение по умолчанию
 let urlParams = new URLSearchParams(location.search);
-let searchValue = urlParams.get('searchInput') || "";
-let selectValue = urlParams.get('select') || "asc";
+let searchValue = urlParams.get('search') || "";
+let selectValue = urlParams.get('sort') || "";
 let completedValue = urlParams.get('isCompleted') || false;
 
-searchInput.addEventListener('change', (event) => {   
-  searchValue = event.target.value; 
-  localStorage.setItem("searchInput", searchValue); 
+// let local = location.search;
+
+// if (local !== "") {
+//   let arrLocal = local.slice(1).split('&');
+//   let objParams = {};
+
+//   for (let i = 0; i < arrLocal.length; i++) {
+//     let arrValue = arrLocal[i].split("=");
+//     for (let j = 0; j < arrValue.length - 1; j++) {
+//       objParams[arrValue[j]] = arrValue[j + 1]; 
+//     }
+//   }
+//   console.log(arrLocal);
+//   renderList(filterList(objParams));
+// }
+
+searchInput.addEventListener('change', (event) => {
+  searchValue = event.target.value;
+  localStorage.setItem("searchInput", searchValue);
   addsFilterStateToUrl();
-  renderList(filterList());     
+  renderList(filterList());
 });
 
 select.addEventListener('change', (event) => {
-  selectValue = event.target.value; 
-  localStorage.setItem("select", selectValue);    
-  addsFilterStateToUrl();                     
+  selectValue = event.target.value;
+  localStorage.setItem("select", selectValue);
+  addsFilterStateToUrl();
   renderList(filterList());
 });
 
 isCompleted.addEventListener('change', (event) => {
-  completedValue = event.target.checked;  
+  completedValue = event.target.checked;
   localStorage.setItem("isCompleted", completedValue);
-  addsFilterStateToUrl();                    
-  renderList(filterList()); 
+  addsFilterStateToUrl();
+  renderList(filterList());
 });
 
 // добавления get-параметров к URL
@@ -188,13 +204,13 @@ function addsFilterStateToUrl() {
   let arr = [];
   if (searchValue) {
     arr.push(`search=${searchValue}`);
-  } 
+  }
   if (selectValue) {
     arr.push(`sort=${selectValue}`);
-  } 
+  }
   if (completedValue) {
     arr.push(`isCompleted=${completedValue}`);
-  } 
+  }
   let str = arr.join();
   let arrLetters = str.split('');
   const startOfGetParameters = "?";
@@ -221,7 +237,7 @@ function filterList() {
     result.sort((a, b) => {
       return a.title.localeCompare(b.title);
     })
-  } else {
+  } else if (selectValue === 'desc') {
     result.sort((a, b) => {
       return b.title.localeCompare(a.title);
     })
@@ -235,4 +251,4 @@ function filterList() {
   return result;
 }
 
-renderList(data);
+renderList(filterList());
