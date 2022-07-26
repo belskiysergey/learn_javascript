@@ -10,7 +10,7 @@ const thirdInput = document.querySelector('input[data-name="third"]');
 const allSumInput = document.querySelector('input[data-name="allSumInput"]');
 const submitBtn = document.querySelector('input[data-submit="totalSum"]');
 
-let valueFist   = ""; 
+let valueFist   = "";
 let valueSecond = "";
 let valueThird  = "";
 

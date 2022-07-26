@@ -16,7 +16,7 @@ let result = [];
 
 for (let letter in secret) {
   secret[letter].forEach((index) => {
-    result[index] = letter
+    result[index] = letter;
   })
 }
 

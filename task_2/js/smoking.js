@@ -1,30 +1,5 @@
-// // По возрасту есть ограничения: от 6 лет включительно
-// // врядли человек может начать курить раньше
-
-// const minimumAge= 6;
-// const eighteenYears= 18;
-
-// do {
-//   var visitorAge = +prompt("Сколько вам лет?");
-// }
-// while
-//   ((isNaN(visitorAge))
-//   || (Boolean(visitorAge) === false)
-//   || (visitorAge < minimumAge));
-
-// let smoking = confirm("Вы курите?");
-
-// if ((visitorAge < eighteenYears) && (!smoking)) {
-//   alert("Так держать!");
-// } else if ((visitorAge < eighteenYears) && (smoking)) {
-//   alert("Маме расскажу");
-// } else if ((visitorAge >= eighteenYears) && (!smoking)) {
-//   alert("Молодец, и не надо");
-// } else {
-//   alert("Ну и зря");
-// }
-
-
+// По возрасту есть ограничения: от 6 лет включительно
+// врядли человек может начать курить раньше
 
 const eighteenYears = 18;
 const isAdult = +prompt("Сколько вам лет?") <= eighteenYears;

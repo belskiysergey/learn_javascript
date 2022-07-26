@@ -16,10 +16,3 @@ var cells = [3, 4, 1, 2, 7];
 var result = cells.filter(item => item % 2 === 0);
 console.log(result);
 
-
-// var result = [];
-// for (var i = 0; i < cells.length; i++) {
-//   if (cells[i] % 2 === 0) {
-//     result.push(cells[i]);
-//   }
-// }
