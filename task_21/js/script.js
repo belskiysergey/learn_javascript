@@ -11,26 +11,26 @@ const allSumInput = document.querySelector('input[data-name="allSumInput"]');
 const submitBtn = document.querySelector('input[data-submit="totalSum"]');
 
 let valueFist   = ""; 
-    valueSecond = "";
-    valueThird  = "";
+let valueSecond = "";
+let valueThird  = "";
 
 firstInput.addEventListener('keyup', (e) => {
   if (isNaN(+((e.target.value).trim()))) {
-    e.target.value = valueFist;
+    e.target.value = "";
   } else {
     valueFist = e.target.value;
   }
 });
 secondInput.addEventListener('keyup', (e) => {
   if (isNaN(+((e.target.value).trim()))) {
-    e.target.value = valueSecond;
+    e.target.value = "";
   } else {
     valueSecond = e.target.value;
   }
 });
 thirdInput.addEventListener('keyup', (e) => {
   if (isNaN(+((e.target.value).trim()))) {
-    e.target.value = valueThird;
+    e.target.value = "";
   } else {
     valueThird = e.target.value;
   }
@@ -43,9 +43,15 @@ function sum(a, b, c) {
 submitBtn.addEventListener('click', (e) => {
   let sumNumbers = sum(+valueFist, +valueSecond, +valueThird);
   allSumInput.value = sumNumbers;
+
   firstInput.value = "";
+  valueFist = "";
+
   secondInput.value = "";
+  valueSecond = "";
+
   thirdInput.value = "";
+  valueThird = "";
 });
 
 //------------------------------task_2-------------------------------------
