@@ -62,6 +62,12 @@ let valueFourth = undefined;
 let firstArg = undefined;
 let secondArg = undefined;
 
+function getRandomInt(min, max) {
+  min = Math.ceil(min);
+  max = Math.floor(max);
+  return Math.floor(Math.random() * (max - min)) + min;
+}
+
 focusInp.addEventListener('change', (e) => {
   if ((isNaN(+((e.target.value).trim()))) || (+((e.target.value).trim()) === 1)) {
     e.target.value = "";
@@ -70,12 +76,6 @@ focusInp.addEventListener('change', (e) => {
 
     let maximum = valueFourth;
     const minimum = 1; 
-
-    function getRandomInt(min, max) {
-      min = Math.ceil(min);
-      max = Math.floor(max);
-      return Math.floor(Math.random() * (max - min)) + min;
-    }
 
     do {
       firstArg = getRandomInt(minimum, +maximum);
