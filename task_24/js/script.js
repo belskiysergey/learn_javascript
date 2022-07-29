@@ -20,11 +20,18 @@ xhr.onerror = function() {
   alert("Запрос не удался");
 };
 
-let arr = JSON.parse(xhr.response); // из строки делаем массив объектов
+let result; 
 
-for (let i = 0; i < arr.length; i++) {
+// ловим ошибки
+try {
+  result = JSON.parse(xhr.response); // из строки делаем массив объектов
+} catch {
+  result = null;
+}
+
+for (let i = 0; i < result.length; i++) {
   if (i < 10) {
-    document.write(`id: ${arr[i].id} <br> Password: ${arr[i].login} <br> Avatar: ${arr[i].avatar_url} <hr>`);
+    document.write(`id: ${result[i].id} <br> Password: ${result[i].login} <br> Avatar: ${result[i].avatar_url} <hr>`);
   } else {
     break;
   }
