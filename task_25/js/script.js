@@ -3,65 +3,43 @@
 // при нажатии на Next & Prev переключатся между блоками
 
 let firstBlock = document.querySelector('.block_1');             // блок первый
-// console.log("блок первый: " + firstBlock);
-
 let secondBlock = document.querySelector('.block_2');            // блок активности
-// console.log("блок активности: " + secondBlock);
-
 let thirdBlock = document.querySelector('.block_3');             // блок цели
-// console.log("блок цели: " + thirdBlock);
-
 let fourthBlock = document.querySelector('.block_4');            // блок результата
-// console.log("блок результата: " + fourthBlock);
-
-let result = document.querySelector('.result');                  // результат
-// console.log("результат: " + result);
-
+let result = document.getElementById('result');                  // результат
 let male = document.getElementById('male');                      // мужской пол
-// console.log("мужской пол: " + male);
-
 let female = document.getElementById('female');                  // женский пол
-// console.log("женский пол: " + female);
-
 let growth = document.getElementById('growth');                  // рост
-// console.log("рост: " + growth);
-
 let currentWeight = document.getElementById('currentWeight');    // текущий вес
-// console.log("текущий вес: " + currentWeight);
-
-let desiredWeight = document.getElementById('desiredWeight');    // цель
-// console.log("цель: " + desiredWeight);
-
+let yourAge = document.getElementById('yourAge');                // возраст
 let yourActivity = document.getElementById('yourActivity');      // ваша активность
-// console.log("ваша активность: " + yourActivity);
-
 let chosenHeight = document.getElementById('chosenHeight');      // span для вывода роста
-// console.log("выбранный рост выводим сюда: " + chosenHeight);
-
-let desiredResult = document.getElementById('desiredResult');      // выбрать желаемый результат
-// console.log("желаемый результат: " + desiredResult);
-
+let desiredResult = document.getElementById('desiredResult');    // выбрать желаемый результат
 let imageYourActive = document.getElementById('imageYourActive');
 let imageDesiredResult = document.getElementById('imageDesiredResult');
 
 // переменные кнопок
-let firstButtonNext = document.querySelector("button[data-page='2']");
-let secondButtonNext = document.querySelector("button[data-page='3']");
-let thirdButtonNext = document.querySelector("button[data-page='4']");
-
-let firstButtonPrev = document.querySelector("button[data-page='1']");
-let secondButtonPrev = document.querySelector("button[data-page='2']");
-let thirdButtonPrev = document.querySelector("button[data-page='3']");
+let firstButtonNext = document.getElementById("firstButtonNext");
+let secondButtonNext = document.getElementById("secondButtonNext");   
+let thirdButtonNext = document.getElementById("thirdButtonNext");
+let firstButtonPrev = document.getElementById("firstButtonPrev");
+let secondButtonPrev = document.getElementById("secondButtonPrev");
+let thirdButtonPrev = document.getElementById("thirdButtonPrev");   
 
 // вспомогательные переменные 
-
 let maleGender = false;                                          // мужской пол
 let femaleGender = false;                                        // женский пол
 let chosenHeightValue = 130;                                     // рост
 let userWeight = "";                                             // текущий вес пользователя
-let desiredUserWeight = "";                                      // желаемый вес пользователя
-let yourActivityValue = "normal";                                // активность пользователя
-let desiredResultValue = "weight support";                       // желаемый результат
+let userAge = "";                                                // возраст
+let yourActivityValue = "";                                      // активность пользователя
+let desiredResultValue = "";                                     // желаемый результат
+
+// вычислительные переменные
+let basicMetabolism = "";
+let activity = 1.38;                                             // коэффициент активности
+let caloricСoefficient = 0;                                      // коэффициент калорийности
+let calories = "";
 
 male.addEventListener('change', (e) => {                         // мужской пол
   maleGender = e.target.value;
@@ -75,20 +53,18 @@ growth.addEventListener('input', (e) => {                        // рост
   chosenHeightValue = e.target.value;
   chosenHeight.innerHTML = chosenHeightValue + " см";
 });
-currentWeight.addEventListener('change', (e) => {                // текущий вес пользователя
+currentWeight.addEventListener('keyup', (e) => {                 // текущий вес пользователя
   if (isNaN(+((e.target.value).trim()))) {
-    userWeight = "";
+    e.target.value = "";
   } else {
     userWeight = Number(e.target.value);
-    console.log(userWeight);
   }
 });
-desiredWeight.addEventListener('change', (e) => {                // желаемый вес пользователя
+yourAge.addEventListener('keyup', (e) => {                       // возраст
   if (isNaN(+((e.target.value).trim()))) {
-    desiredUserWeight = "";
+    e.target.value = "";
   } else {
-    desiredUserWeight = Number(e.target.value);
-    console.log(desiredUserWeight);
+    userAge = Number(e.target.value);
   }
 });
 yourActivity.addEventListener('input', (e) => {                  // активность пользователя
@@ -96,13 +72,16 @@ yourActivity.addEventListener('input', (e) => {                  // активн
 
   switch (yourActivityValue) {
     case '1':
-      imageYourActive.innerHTML = `<img src="img/pas.png">`;
+      imageYourActive.src = "img/pas.png";
+      activity = 1.2;
       break;
     case '2':
-      imageYourActive.innerHTML = `<img src="img/norm.png">`;
+      imageYourActive.src = "img/norm.png";
+      activity = 1.38;
       break;
     case '3':
-      imageYourActive.innerHTML = `<img src="img/active.png">`;
+      imageYourActive.src = "img/active.png";
+      activity = 1.55;
       break;
   }
 });
@@ -111,21 +90,28 @@ desiredResult.addEventListener('input', (e) => {                 // желаем
 
   switch (desiredResultValue) {
     case '1':
-      imageDesiredResult.innerHTML = `<img src="img/lose_weight.png">`;
+      imageDesiredResult.src = "img/lose_weight.png";
+      caloricСoefficient = 15;
       break;
     case '2':
-      imageDesiredResult.innerHTML = `<img src="img/maintain_weight.png">`;
+      imageDesiredResult.src = "img/maintain_weight.png";
+      caloricСoefficient = 0;
       break;
     case '3':
-      imageDesiredResult.innerHTML = `<img src="img/get_fat.png">`;
+      imageDesiredResult.src = "img/get_fat.png";
+      caloricСoefficient = 15;
       break;
   }
 });
 
 // кнопки Next
 firstButtonNext.addEventListener('click', (e) => {
-  firstBlock.style.display = "none";
-  secondBlock.style.display = "block";
+  if ((maleGender || femaleGender) && (userWeight !== "") && (userAge !== "")) {
+    firstBlock.style.display = "none";
+    secondBlock.style.display = "block";
+  } else {
+    alert("Вы что-то пропустили");
+  }
 });
 secondButtonNext.addEventListener('click', (e) => {
   secondBlock.style.display = "none";
@@ -134,6 +120,27 @@ secondButtonNext.addEventListener('click', (e) => {
 thirdButtonNext.addEventListener('click', (e) => {
   thirdBlock.style.display = "none";
   fourthBlock.style.display = "block";
+
+  if (maleGender) {
+    let basicMetabolism = 66 + (13.7 * userWeight) + (5 * chosenHeightValue) - (6.8 * userAge);
+    let basalMetabolismWithRegardToActivity = basicMetabolism * activity;
+    if (desiredResultValue == '1') calories = basalMetabolismWithRegardToActivity - caloricСoefficient;
+    if (desiredResultValue == '2') calories = basalMetabolismWithRegardToActivity;
+    if (desiredResultValue == '3') calories = basalMetabolismWithRegardToActivity + caloricСoefficient;
+
+    result.innerHTML = Math.round(calories);
+    
+  }
+  
+  if (femaleGender) {
+    let basicMetabolism = 655 + (9.6 * userWeight) + (1.8 * chosenHeightValue) - (4.7 * userAge);
+    let basalMetabolismWithRegardToActivity = basicMetabolism * activity;
+    if (desiredResultValue == '1') calories = basalMetabolismWithRegardToActivity - caloricСoefficient;
+    if (desiredResultValue == '2') calories = basalMetabolismWithRegardToActivity;
+    if (desiredResultValue == '3') calories = basalMetabolismWithRegardToActivity + caloricСoefficient;
+
+    result.innerHTML = Math.round(calories);
+  }
 });
 
 // кнопки Prev
@@ -149,3 +156,4 @@ firstButtonPrev.addEventListener('click', (e) => {
   secondBlock.style.display = "none";
   firstBlock.style.display = "block";
 });
+
