@@ -8,7 +8,7 @@ xhr.open('GET', 'https://api.github.com/users', false);
 xhr.send();
 
 // 4. Этот код сработает после того, как мы получим ответ сервера
-xhr.onload = function() {
+xhr.onload = function () {
   if (xhr.status != 200) { // анализируем HTTP-статус ответа, если статус не 200, то произошла ошибка
     console.log(`Ошибка ${xhr.status}: ${xhr.statusText}`);
   } else { // если всё прошло гладко, выводим результат
@@ -16,11 +16,11 @@ xhr.onload = function() {
   }
 }
 
-xhr.onerror = function() {
+xhr.onerror = function () {
   alert("Запрос не удался");
 };
 
-let result; 
+let result;
 
 // ловим ошибки
 try {

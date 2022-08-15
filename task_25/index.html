@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/style.css">
+  <title>Калькулятор калорий</title>
+</head>
+
+<body>
+
+  <h2>Расчёт калорий</h2>
+
+  <section class="active_block block_1">
+    <h3>Выберите ваш пол:</h3>
+    <label>
+      <input id="male" type="radio" name="gender">Male
+    </label>
+    <label>
+      <input id="female" type="radio" name="gender">Female
+    </label>
+    
+    <hr>
+
+    <h3>Введите ваш рост: <span id="chosenHeight">130 см</span></h3>
+    <label>
+      <input id="growth" type="range" min="50" max="220" step="1">
+
+    </label>
+    
+    <hr>
+
+    <h3>Введите ваш текущий вес:</h3>
+    <label>
+      <input id="currentWeight" type="text">
+    </label>
+
+    <hr>
+
+    <h3>Ваш возраст:</h3>
+    <label>
+      <input id="yourAge" type="text">
+    </label>
+    <div>
+      <button id="firstButtonNext">Next</button>
+    </div>
+  </section>
+
+  <section class="block_2">
+    <h3>Выберите вашу активность:</h3>
+    <input id="yourActivity" type="range" min="1" max="3" step="1">
+    <div>
+      <button id="firstButtonPrev">Prev</button>
+      <button id="secondButtonNext">Next</button>
+    </div>
+    <div>
+      <img id="imageYourActive" src="img/norm.png">
+    </div>
+
+  </section>
+
+  <section class="block_3">
+    <h3>Выберите желаемый результат:</h3>
+    <label>
+      <input id="desiredResult" type="range" min="1" max="3" step="1">
+    </label>
+    <div>
+      <button id="secondButtonPrev">Prev</button>
+      <button id="thirdButtonNext">Next</button>
+    </div>
+    <div>
+      <img id="imageDesiredResult" src="img/maintain_weight.png">
+    </div>
+  </section>
+
+  <section class="block_4">
+    <h3>Вам необходимо принимать не больше <span id="result"></span> кКал в день.</h3>
+
+    <div>
+      <button id="thirdButtonPrev">Prev</button>
+    </div>
+  </section>
+
+
+  <script src="js/script.js"></script>
+</body>
+
+</html>
